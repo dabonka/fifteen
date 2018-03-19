@@ -1,12 +1,14 @@
 {
   "name": "fifteen",
   "version": "1.0.0",
-  "description": "",
+  "description": "Funny puzzle",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack",
+    "start": "webpack-dev-server"
   },
-  "author": "",
+  "author": "Roman Belik",
   "license": "ISC",
   "dependencies": {
     "react": "^16.2.0",
@@ -19,5 +21,8 @@
     "babel-preset-react": "^6.24.1",
     "webpack": "^4.1.1",
     "webpack-dev-server": "^3.1.1"
+  },
+  "babel": {
+    "presets": ["es2015", "react"]
   }
 }
