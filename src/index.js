@@ -3,4 +3,6 @@ import {render} from 'react-dom';
 import App from './App';
 import Header from './components/Header';
 
-render(<App/>, document.getElementById('root'));
+let gameBoard = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, null] 
+
+render(<App arr = {gameBoard}/>, document.getElementById('root'));

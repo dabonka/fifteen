@@ -1,9 +1,14 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
-function Cell(){
+function Cell(props){
 	return(
-		<div><h2>Ячейки</h2></div>
+		<div>{props.number}</div>
 	)
+}
+
+Cell.propTypes = {
+ number: PropTypes.number
 }
 
 export default Cell;

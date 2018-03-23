@@ -1,11 +1,15 @@
 import React from 'react';
 import Header from './components/Header'
 import Cell from './components/Cell'
+import PropTypes from 'prop-types';
 
-function App(){
+function App(props){
 	return (
 		<div>
 			<Header title={"Пятнашки"}/>
+			{props.arr.map(n => {
+ 				<Cell number={n} /> 
+			})}
 			<Cell />
 				<table>
 					<tbody>
@@ -37,6 +41,10 @@ function App(){
 				</table>
 		</div>
 	)
+}
+
+App.propTypes = {
+ arr: PropTypes.array.isRequired
 }
 
 export default App;
