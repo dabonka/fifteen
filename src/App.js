@@ -9,9 +9,9 @@ function App(props){
 			<Header title={"Пятнашки"}/>
 			<div>
 				{props.arr.map(n => {
-					<Cell position={n} title={"test"}/>
-				})}
-				<Cell title={"test"} />
+					<Cell position={n} title={"test1"}/>
+         })}
+				<Cell title={"test2"} />
 			</div>	
 		</div>
 	)
@@ -22,3 +22,7 @@ App.propTypes = {
 }
 
 export default App;
+
+//				{props.arr.map(n => {
+//          <Cell position={n} title={"test"}/>
+//         })}
