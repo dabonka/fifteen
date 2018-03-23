@@ -23,6 +23,7 @@
     "webpack": "^3.11.0",
     "webpack-dev-server": "^2.11.1"
   },
+  
   "babel": {
     "presets": [
       "es2015",
