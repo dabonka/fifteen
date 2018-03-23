@@ -3,12 +3,15 @@ import PropTypes from 'prop-types';
 
 function Cell(props){
 	return(
-		<div>{props.number}</div>
+		<div>
+			{props.position}
+			olala
+		</div>
 	)
 }
 
 Cell.propTypes = {
- number: PropTypes.number
+ position: PropTypes.number.isRequired
 }
 
 export default Cell;
