@@ -5,13 +5,14 @@ function Cell(props){
 	return(
 		<div>
 			{props.position}
-			olala
+			{props.title}
 		</div>
 	)
 }
 
 Cell.propTypes = {
- position: PropTypes.number
+ position: PropTypes.number,
+ title: PropTypes.string
 }
 
 export default Cell;
