@@ -11,7 +11,7 @@ function Cell(props){
 }
 
 Cell.propTypes = {
- position: PropTypes.number.isRequired
+ position: PropTypes.number
 }
 
 export default Cell;
