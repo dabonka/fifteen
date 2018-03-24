@@ -8,10 +8,7 @@ function App(props){
 		<div>
 			<Header title={"Пятнашки"}/>
 			<div>
-				{props.arr.map(n => {
-					<Cell position={n} title={"test1"}/>
-         })}
-				<Cell title={"test2"} />
+				{props.arr.map(n => <Cell position={n}/>)}
 			</div>	
 		</div>
 	)
@@ -22,7 +19,3 @@ App.propTypes = {
 }
 
 export default App;
-
-//				{props.arr.map(n => {
-//          <Cell position={n} title={"test"}/>
-//         })}
