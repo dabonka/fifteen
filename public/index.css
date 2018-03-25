@@ -1,5 +1,5 @@
 .mainBox {
-	display: flex;
+  display: flex;
   flex-wrap: wrap;
   height: 416px;
   width: 416px;
@@ -7,7 +7,7 @@
 }
 
 .cell {
-	height: 98px;
+  height: 98px;
   width: 98px;
   border-style: solid;
   border-width: 1px;
@@ -16,4 +16,16 @@
   line-height: 1.3em;
   font-size: 450%;
   background-color: #bfb7b7;
+}
+
+.cellNull {
+  height: 98px;
+  width: 98px;
+  border-style: solid;
+  border-width: 1px;
+  margin: 2px;
+  text-align: center;
+  line-height: 1.3em;
+  font-size: 450%;
+  background-color: white;
 }
