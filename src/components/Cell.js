@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 function Cell(props){
 	return(
-		<div>
+		<div className="cell">
 			{props.position}
 		</div>
 	)

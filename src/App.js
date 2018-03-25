@@ -8,7 +8,7 @@ function App(props){
 		<div>
 			<Header title={"Пятнашки"}/>
 			<div className="mainBox">
-				{props.arr.map(n => <div className="cell"><Cell position={n}/></div>)}
+				{props.arr.map(n => <Cell position={n}/>)}
 			</div>	
 		</div>
 	)
