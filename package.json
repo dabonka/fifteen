@@ -11,6 +11,7 @@
   "author": "Roman Belik",
   "license": "ISC",
   "dependencies": {
+    "prop-types": "^15.6.1",
     "react": "^16.2.0",
     "react-dom": "^16.2.0"
   },
@@ -23,7 +24,6 @@
     "webpack": "^3.11.0",
     "webpack-dev-server": "^2.11.1"
   },
-  
   "babel": {
     "presets": [
       "es2015",

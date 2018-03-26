@@ -2,4 +2,6 @@ import React from 'react';
 import {render} from 'react-dom';
 import App from './App';
 
-render(<App/>, document.getElementById('root'));
+let gameBoard = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, null] 
+
+render(<App sequenceOfNumbers = {gameBoard} />, document.getElementById('root'));
