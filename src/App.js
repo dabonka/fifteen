@@ -7,6 +7,20 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {sequenceOfNumbers: this.props.sequenceOfNumbers};
+    this.shuffle = this.shuffle.bind(this);
+    this.mixNumbers = this.mixNumbers.bind(this);
+	}
+
+	shuffle(a) {
+	  for (let i = a.length - 1; i > 0; i--) {
+	      const j = Math.floor(Math.random() * (i + 1));
+	      [a[i], a[j]] = [a[j], a[i]];
+	  }
+		return a;
+	}
+
+	mixNumbers() {
+		this.setState({sequenceOfNumbers: this.shuffle(this.state.sequenceOfNumbers)});
 	}
 
 	render() {
