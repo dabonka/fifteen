@@ -8,7 +8,7 @@ let currentButtonName = "Старт"
 class App extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {sequenceOfNumbers: this.props.sequenceOfNumbers, isGameOpen: false};
+    this.state = {sequenceOfNumbers: this.props.sequenceOfNumbers, isGameOpen: this.props.isGameOpen};
     this.shuffle = this.shuffle.bind(this);
     this.mixNumbers = this.mixNumbers.bind(this);
     this.changeButtonName = this.changeButtonName.bind(this);
@@ -41,7 +41,7 @@ class App extends React.Component {
 	}
 
 	changeButtonName(name){
-		let currentButtonName = name
+		currentButtonName = name
 	}
 
 	render() {
