@@ -3,8 +3,6 @@ import Header from './components/Header'
 import Cell from './components/Cell'
 import PropTypes from 'prop-types';
 
-let currentButtonName = "Старт"
-
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -15,7 +13,8 @@ class App extends React.Component {
     this.nextGameStep = this.nextGameStep.bind(this);
 	}
 
-	shuffle(a) {
+	shuffle(arr) {
+		const a = arr.slice();
 	  for (let i = a.length - 1; i > 0; i--) {
 	      const j = Math.floor(Math.random() * (i + 1));
 	      [a[i], a[j]] = [a[j], a[i]];
