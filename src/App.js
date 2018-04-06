@@ -11,8 +11,8 @@ class App extends React.Component {
     this.state = {sequenceOfNumbers: this.props.sequenceOfNumbers, isGameOpen: this.props.isGameOpen};
     this.shuffle = this.shuffle.bind(this);
     this.mixNumbers = this.mixNumbers.bind(this);
-    this.changeButtonName = this.changeButtonName.bind(this);
-    this.changeGameStatus = this.changeGameStatus.bind(this);
+    this.putInOrder = this.putInOrder.bind(this);
+    this.nextGameStep = this.nextGameStep.bind(this);
 	}
 
 	shuffle(a) {
@@ -27,21 +27,13 @@ class App extends React.Component {
 		this.setState({sequenceOfNumbers: this.shuffle(this.state.sequenceOfNumbers)});
 	}
 
-	changeGameStatus() {
-		let currentGameStatus = this.state.isGameOpen
-			if (currentGameStatus ) {
-				changeButtonName("Закрыть")
-				console.log('---', 'opened')
-			} else {
-				changeButtonName("Старт")
-				console.log('---', 'closed')
-			}
-		console.log('---', 'if false')
-		this.setState({isGameOpen: !this.isGameOpen})
+	putInOrder() {
+		this.setState({sequenceOfNumbers: this.props.sequenceOfNumbers});
 	}
 
-	changeButtonName(name){
-		currentButtonName = name
+	nextGameStep() {
+		this.state.isGameOpen ? this.putInOrder() : this.mixNumbers()
+		this.setState({isGameOpen: !this.state.isGameOpen})
 	}
 
 	render() {
@@ -54,7 +46,7 @@ class App extends React.Component {
 
 				<div className="buttonBox">
       		<div className="buttonPosition">
-        		<button id="button" onClick={this.changeGameStatus}>{currentButtonName}</button>    
+        		<button id="button" onClick={this.nextGameStep}>{this.state.isGameOpen ? "Закрыть" : "Старт"}</button>    
       		</div>
     		</div>
 
