@@ -30,23 +30,20 @@ class App extends React.Component {
 	}
 
 	checkIsGameEnd() {
-		if (this.props.sequenceOfNumbers === this.state.sequenceOfNumbers) {
-			this.setState({isGameOpen: false});
+		console.log('this.props.sequenceOfNumbers', this.props.sequenceOfNumbers)
+		console.log('this.state.sequenceOfNumbers', this.state.sequenceOfNumbers)
+		if (JSON.stringify(this.props.sequenceOfNumbers)==JSON.stringify(this.state.sequenceOfNumbers)) {
 			console.log('Игра закрыта')
 		} else {
-			console.log('Равенство не выполнено')
-			console.log('this.props.sequenceOfNumbers', this.props.sequenceOfNumbers)
-			console.log('this.state.sequenceOfNumbers', this.state.sequenceOfNumbers)
+			console.log('Игра открыта')
 		}
 	}
 
 	cellClick(i) {
 		let nullPosition = this.findNullPosition();
 		if (this.checkReplacementAble(i, nullPosition)){
-			this.setState({sequenceOfNumbers: this.replaceChips(i, nullPosition)});
+			this.setState({sequenceOfNumbers: this.replaceChips(i, nullPosition)},()=>{this.checkIsGameEnd()});
 		}
-
-		this.checkIsGameEnd();
 	}
 
 	replaceChips(x, y){
