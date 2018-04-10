@@ -16,6 +16,8 @@ class App extends React.Component {
     this.findNullPosition = this.findNullPosition.bind(this);
     this.checkNull = this.checkNull.bind(this);
     this.replaceChips = this.replaceChips.bind(this);
+    this.testFunction = this.testFunction.bind(this); // Тестирование
+    this.checkIsGameEnd = this.checkIsGameEnd.bind(this);
 	}
 
 	shuffle(arr) {
@@ -27,17 +29,24 @@ class App extends React.Component {
 		return a;
 	}
 
+	checkIsGameEnd() {
+		if (this.props.sequenceOfNumbers === this.state.sequenceOfNumbers) {
+			this.setState({isGameOpen: false});
+			console.log('Игра закрыта')
+		} else {
+			console.log('Равенство не выполнено')
+			console.log('this.props.sequenceOfNumbers', this.props.sequenceOfNumbers)
+			console.log('this.state.sequenceOfNumbers', this.state.sequenceOfNumbers)
+		}
+	}
+
 	cellClick(i) {
 		let nullPosition = this.findNullPosition();
 		if (this.checkReplacementAble(i, nullPosition)){
 			this.setState({sequenceOfNumbers: this.replaceChips(i, nullPosition)});
 		}
 
-		if ((nullPosition === 15) || (this.props.sequenceOfNumbers === this.state.sequenceOfNumbers)) {
-			console.log('Game status is ', this.state.isGameOpen)
-			//this.setState({isGameOpen: false});
-			//this.putInOrder();
-		}
+		this.checkIsGameEnd();
 	}
 
 	replaceChips(x, y){
@@ -190,6 +199,10 @@ class App extends React.Component {
 		this.setState({isGameOpen: !this.state.isGameOpen})
 	}
 
+	testFunction() {
+		this.setState({sequenceOfNumbers: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, null, 15] });
+	}
+
 	render() {
 		return (
 			<div>
@@ -202,6 +215,10 @@ class App extends React.Component {
       		<div className="buttonPosition">
         		<button id="button" onClick={this.nextGameStep}>{this.state.isGameOpen ? "Закрыть" : "Старт"}</button>    
       		</div>
+
+      		<div>
+        		<button id="test" onClick={this.testFunction}>1 шаг до победы</button>    
+        	</div>	
     		</div>
 
 			</div>
