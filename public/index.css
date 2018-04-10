@@ -16,6 +16,7 @@
   line-height: 1.3em;
   font-size: 450%;
   background-color: #bfb7b7;
+  cursor: pointer;
 }
 
 .cellNull {

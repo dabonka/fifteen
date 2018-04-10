@@ -20,7 +20,8 @@ function Cell(props){
 }
 
 Cell.propTypes = {
- position: PropTypes.number
+ position: PropTypes.number,
+ cellClick: PropTypes.func
 }
 
 export default Cell;

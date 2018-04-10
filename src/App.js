@@ -22,6 +22,10 @@ class App extends React.Component {
 		return a;
 	}
 
+	cellClick(clicked_id) {
+		console.log('---',clicked_id)
+	}
+
 	mixNumbers() {
 		this.setState({sequenceOfNumbers: this.shuffle(this.state.sequenceOfNumbers)});
 	}
@@ -40,7 +44,7 @@ class App extends React.Component {
 			<div>
 				<Header title={"Пятнашки"}/>
 				<div className="mainBox">
-					{this.state.sequenceOfNumbers.map((n, i) => <Cell key={i} position={n}/>)}
+					{this.state.sequenceOfNumbers.map((n, i) => <Cell key={i} position={n}  onClick={this.cellClick(i)} />)}
 				</div>	
 
 				<div className="buttonBox">
@@ -61,3 +65,4 @@ App.propTypes = {
 }
 
 export default App;
+
