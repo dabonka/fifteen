@@ -23,8 +23,8 @@ class App extends React.Component {
 		return a;
 	}
 
-	cellClick(clicked_id) {
-		console.log('---',clicked_id)
+	cellClick(i) {
+		console.log('---', i)
 	}
 
 	mixNumbers() {
@@ -45,7 +45,7 @@ class App extends React.Component {
 			<div>
 				<Header title={"Пятнашки"}/>
 				<div className="mainBox">
-					{this.state.sequenceOfNumbers.map((n, i) => <Cell key={i} position={n}  onClick={this.cellClick(i)} />)}
+					{this.state.sequenceOfNumbers.map((n, i) => <Cell key={i} position={n} cellClick={() => this.cellClick(i)} />)}
 				</div>	
 
 				<div className="buttonBox">

@@ -2,17 +2,17 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 function Cell(props){
-	const cellPosition = props.position 
-	if (cellPosition) {
+	const {position, cellClick} = props
+	if (position) {
 	return(
-		<div className="cell">
-			{cellPosition}
+		<div className="cell" onClick={props.cellClick} >
+			{position}
 		</div>
 	)
 	} else {
 			return(
 		<div className="cellNull">
-			{cellPosition}
+			{position}
 		</div>
 	)
 
