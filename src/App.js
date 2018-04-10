@@ -11,6 +11,7 @@ class App extends React.Component {
     this.mixNumbers = this.mixNumbers.bind(this);
     this.putInOrder = this.putInOrder.bind(this);
     this.nextGameStep = this.nextGameStep.bind(this);
+    this.cellClick = this.cellClick.bind(this);
 	}
 
 	shuffle(arr) {
