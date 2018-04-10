@@ -32,6 +32,12 @@ class App extends React.Component {
 		if (this.checkReplacementAble(i, nullPosition)){
 			this.setState({sequenceOfNumbers: this.replaceChips(i, nullPosition)});
 		}
+
+		if ((nullPosition === 15) || (this.props.sequenceOfNumbers === this.state.sequenceOfNumbers)) {
+			console.log('Game status is ', this.state.isGameOpen)
+			//this.setState({isGameOpen: false});
+			//this.putInOrder();
+		}
 	}
 
 	replaceChips(x, y){
@@ -76,7 +82,7 @@ class App extends React.Component {
 				}
 
 			case 3:
-				if ((nullPosition === 2) || (nullPosition === 6)) {
+				if ((nullPosition === 2) || (nullPosition === 7)) {
 					return true
 				} else {
 					return false
@@ -88,7 +94,7 @@ class App extends React.Component {
 				} else {
 					return false
 				}
-							
+
 			case 5:
 				if ((nullPosition === 1) || (nullPosition === 4) || (nullPosition === 6) || (nullPosition === 9)) {
 					return true
