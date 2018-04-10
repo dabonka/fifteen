@@ -3,14 +3,29 @@ import PropTypes from 'prop-types';
 
 function Cell(props){
 	const {position, cellClick} = props
-	return (
-    <div 
-        className={`${position ? "cell" : "cellNull"}`}
-        onClick={cellClick} 
-    >
-        <div>{position}</div>
-    </div>
-)
+	if (position) {
+	return(
+		<div className="cell" onClick={props.cellClick} >
+			{position}
+		</div>
+	)
+	} else {
+		return(
+			<div className="cellNull">
+				{position}
+			</div>
+			)
+
+	} 
+
+// 	return (
+//     <div 
+//         className={`${position ? "cell" : "cellNull"}`}
+//         onClick={cellClick} 
+//     >
+//         <div>{position}</div>
+//     </div>
+// )
 }
 
 Cell.propTypes = {

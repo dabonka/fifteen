@@ -12,6 +12,10 @@ class App extends React.Component {
     this.putInOrder = this.putInOrder.bind(this);
     this.nextGameStep = this.nextGameStep.bind(this);
     this.cellClick = this.cellClick.bind(this);
+    this.checkReplacementAble = this.checkReplacementAble.bind(this);
+    this.findNullPosition = this.findNullPosition.bind(this);
+    this.checkNull = this.checkNull.bind(this);
+    this.replaceChips = this.replaceChips.bind(this);
 	}
 
 	shuffle(arr) {
@@ -24,7 +28,147 @@ class App extends React.Component {
 	}
 
 	cellClick(i) {
-		console.log('---', i)
+		let nullPosition = this.findNullPosition();
+		if (this.checkReplacementAble(i, nullPosition)){
+			this.setState({sequenceOfNumbers: this.replaceChips(i, nullPosition)});
+		}
+	}
+
+	replaceChips(x, y){
+		let a = this.state.sequenceOfNumbers.slice();
+		let tempVar = a[y];
+		a[y] = a[x];
+		a[x] = tempVar;
+		return a
+	}
+
+	findNullPosition() {
+		let nullPosition = this.state.sequenceOfNumbers.findIndex(this.checkNull);
+		return nullPosition;
+	}
+
+	checkNull(value) {
+    return value === null;
+	}
+
+	checkReplacementAble(chipPosition, nullPosition) {
+		let arr = this.state.sequenceOfNumbers
+		switch(chipPosition) {
+			case 0:
+				if ((nullPosition === 1) || (nullPosition === 4)) {
+					return true
+				} else {
+					return false
+				}
+
+			case 1:
+				if ((nullPosition === 0) || (nullPosition === 2) || (nullPosition === 5)) {
+					return true
+				} else {
+					return false
+				}
+
+			case 2:
+				if ((nullPosition === 1) || (nullPosition === 3) || (nullPosition === 6)) {
+					return true
+				} else {
+					return false
+				}
+
+			case 3:
+				if ((nullPosition === 2) || (nullPosition === 6)) {
+					return true
+				} else {
+					return false
+				}
+
+			case 4:
+				if ((nullPosition === 0) || (nullPosition === 5) || (nullPosition === 8)) {
+					return true
+				} else {
+					return false
+				}
+							
+			case 5:
+				if ((nullPosition === 1) || (nullPosition === 4) || (nullPosition === 6) || (nullPosition === 9)) {
+					return true
+				} else {
+					return false
+				}
+
+			case 6:
+				if ((nullPosition === 2) || (nullPosition === 5) || (nullPosition === 7) || (nullPosition === 10)) {
+					return true
+				} else {
+					return false
+				}
+
+			case 7:
+				if ((nullPosition === 3) || (nullPosition === 6) || (nullPosition === 11)) {
+					return true
+				} else {
+					return false
+				}
+
+			case 8:
+				if ((nullPosition === 4) || (nullPosition === 9) || (nullPosition === 12)) {
+					return true
+				} else {
+					return false
+				}
+
+			case 9:
+				if ((nullPosition === 5) || (nullPosition === 8) || (nullPosition === 10) || (nullPosition === 13)) {
+					return true
+				} else {
+					return false
+				}
+
+			case 10:
+				if ((nullPosition === 6) || (nullPosition === 9) || (nullPosition === 11) || (nullPosition === 14)) {
+					return true
+				} else {
+					return false
+				}
+
+			case 11:
+				if ((nullPosition === 7) || (nullPosition === 10) || (nullPosition === 15)) {
+					return true
+				} else {
+					return false
+				}
+
+			case 12:
+				if ((nullPosition === 8) || (nullPosition === 13)) {
+					return true
+				} else {
+					return false
+				}
+
+			case 13:
+				if ((nullPosition === 9) || (nullPosition === 12) || (nullPosition === 14)) {
+					return true
+				} else {
+					return false
+				}
+
+			case 14:
+				if ((nullPosition === 10) || (nullPosition === 13) || (nullPosition === 15)) {
+					return true
+				} else {
+					return false
+				}
+
+			case 15:
+				if ((nullPosition === 11) || (nullPosition === 14)) {
+					return true
+				} else {
+					return false
+				}
+
+			default:
+    		return false
+		}
 	}
 
 	mixNumbers() {
