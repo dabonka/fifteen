@@ -17,15 +17,6 @@ function Cell(props){
 			)
 
 	} 
-
-// 	return (
-//     <div 
-//         className={`${position ? "cell" : "cellNull"}`}
-//         onClick={cellClick} 
-//     >
-//         <div>{position}</div>
-//     </div>
-// )
 }
 
 Cell.propTypes = {

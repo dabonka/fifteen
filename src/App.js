@@ -17,7 +17,7 @@ class App extends React.Component {
     this.checkNull = this.checkNull.bind(this);
     this.replaceChips = this.replaceChips.bind(this);
     this.testFunction = this.testFunction.bind(this); // Тестирование
-    this.checkIsGameEnd = this.checkIsGameEnd.bind(this);
+    this.checkIsGameFinished = this.checkIsGameFinished.bind(this);
 	}
 
 	shuffle(arr) {
@@ -29,20 +29,18 @@ class App extends React.Component {
 		return a;
 	}
 
-	checkIsGameEnd() {
-		console.log('this.props.sequenceOfNumbers', this.props.sequenceOfNumbers)
-		console.log('this.state.sequenceOfNumbers', this.state.sequenceOfNumbers)
+	checkIsGameFinished() {
 		if (JSON.stringify(this.props.sequenceOfNumbers)==JSON.stringify(this.state.sequenceOfNumbers)) {
-			console.log('Игра закрыта')
-		} else {
-			console.log('Игра открыта')
+			this.setState({isGameOpen: false});
 		}
 	}
 
 	cellClick(i) {
-		let nullPosition = this.findNullPosition();
-		if (this.checkReplacementAble(i, nullPosition)){
-			this.setState({sequenceOfNumbers: this.replaceChips(i, nullPosition)},()=>{this.checkIsGameEnd()});
+		if (this.state.isGameOpen) {
+			let nullPosition = this.findNullPosition();
+			if (this.checkReplacementAble(i, nullPosition)){
+				this.setState({sequenceOfNumbers: this.replaceChips(i, nullPosition)},()=>{this.checkIsGameFinished()});
+			}
 		}
 	}
 
