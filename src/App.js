@@ -6,7 +6,12 @@ import PropTypes from 'prop-types';
 class App extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {sequenceOfNumbers: this.props.sequenceOfNumbers, isGameOpen: this.props.isGameOpen};
+    this.state = {	sequenceOfNumbers: this.props.sequenceOfNumbers,
+    							 	isGameOpen: this.props.isGameOpen, 
+    							 	counter: 0,
+    							 	isGameFinished: false
+    							 };
+
     this.shuffle = this.shuffle.bind(this);
     this.mixNumbers = this.mixNumbers.bind(this);
     this.putInOrder = this.putInOrder.bind(this);
@@ -18,6 +23,7 @@ class App extends React.Component {
     this.replaceChips = this.replaceChips.bind(this);
     this.testFunction = this.testFunction.bind(this); // Тестирование
     this.checkIsGameFinished = this.checkIsGameFinished.bind(this);
+    this.addCount = this.addCount.bind(this);
 	}
 
 	shuffle(arr) {
@@ -29,9 +35,14 @@ class App extends React.Component {
 		return a;
 	}
 
+	addCount() {
+		this.setState({counter: this.state.counter + 1});
+	}
+
 	checkIsGameFinished() {
 		if (JSON.stringify(this.props.sequenceOfNumbers)==JSON.stringify(this.state.sequenceOfNumbers)) {
 			this.setState({isGameOpen: false});
+			this.setState({isGameFinished: true});
 		}
 	}
 
@@ -39,7 +50,7 @@ class App extends React.Component {
 		if (this.state.isGameOpen) {
 			let nullPosition = this.findNullPosition();
 			if (this.checkReplacementAble(i, nullPosition)){
-				this.setState({sequenceOfNumbers: this.replaceChips(i, nullPosition)},()=>{this.checkIsGameFinished()});
+				this.setState({sequenceOfNumbers: this.replaceChips(i, nullPosition)},()=>{this.checkIsGameFinished(), this.addCount()});
 			}
 		}
 	}
@@ -59,6 +70,32 @@ class App extends React.Component {
 
 	checkNull(value) {
     return value === null;
+	}
+
+	mixNumbers() {
+		this.setState({sequenceOfNumbers: this.shuffle(this.state.sequenceOfNumbers)});
+	}
+
+	putInOrder() {
+		this.setState({sequenceOfNumbers: this.props.sequenceOfNumbers});
+	}
+
+	nextGameStep() {
+		this.state.isGameOpen ? this.putInOrder() : this.mixNumbers()
+		this.setState({isGameOpen: !this.state.isGameOpen})
+
+		if (this.state.isGameFinished) {
+			this.setState({isGameFinished: false})
+			this.setState({counter: 0})
+		} 
+
+		this.setState({isGameOpen: !this.state.isGameOpen})
+	}
+
+	testFunction() {
+		if (this.state.isGameOpen) {
+			this.setState({sequenceOfNumbers: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, null, 15] });
+		}
 	}
 
 	checkReplacementAble(chipPosition, nullPosition) {
@@ -181,27 +218,10 @@ class App extends React.Component {
 		}
 	}
 
-	mixNumbers() {
-		this.setState({sequenceOfNumbers: this.shuffle(this.state.sequenceOfNumbers)});
-	}
-
-	putInOrder() {
-		this.setState({sequenceOfNumbers: this.props.sequenceOfNumbers});
-	}
-
-	nextGameStep() {
-		this.state.isGameOpen ? this.putInOrder() : this.mixNumbers()
-		this.setState({isGameOpen: !this.state.isGameOpen})
-	}
-
-	testFunction() {
-		this.setState({sequenceOfNumbers: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, null, 15] });
-	}
-
 	render() {
 		return (
 			<div>
-				<Header title={"Пятнашки"}/>
+				<Header title={"Пятнашки"} counter={this.state.counter} isGameFinished={this.state.isGameFinished} isGameOpen={this.state.isGameOpen} />
 				<div className="mainBox">
 					{this.state.sequenceOfNumbers.map((n, i) => <Cell key={i} position={n} cellClick={() => this.cellClick(i)} />)}
 				</div>	
@@ -210,10 +230,7 @@ class App extends React.Component {
       		<div className="buttonPosition">
         		<button id="button" onClick={this.nextGameStep}>{this.state.isGameOpen ? "Закрыть" : "Старт"}</button>    
       		</div>
-
-      		<div>
-        		<button id="test" onClick={this.testFunction}>1 шаг до победы</button>    
-        	</div>	
+					{this.state.isGameOpen ? <div><button id="test" onClick={this.testFunction}>1 шаг до победы</button></div> : ""	}
     		</div>
 
 			</div>
@@ -224,7 +241,8 @@ class App extends React.Component {
 
 App.propTypes = {
  sequenceOfNumbers: PropTypes.array.isRequired,
- isGameOpen: PropTypes.bool
+ isGameOpen: PropTypes.bool,
+ isGameFinished: PropTypes.bool
 }
 
 export default App;

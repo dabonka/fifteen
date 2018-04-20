@@ -74,3 +74,8 @@
 #test:hover {
   background-color: #e7e7e7;
 }
+
+.congratulation {
+  font-size: 18px;
+  color: red;
+}
